@@ -1,51 +1,45 @@
 {% extends "base.html" %} 
 {% block content %}
-<style>
-    body {
-        font-family: "Roboto", sans-serif;
-        font-size: 18px;
-        background-color: #fdfdfd;
-    }
-    
-    .head_text {
-        color: white;
-    }
-    
-    .card {
-        box-shadow: 0 16px 48px #E3E7EB;
-    }
-</style>
 
-<header class="masthead">
-    <div class="overlay"></div>
+<section class="cta-section theme-bg-light py-5">
+    <div class="container text-center">
+        <h2 class="heading">DevBlog - A Blog Template Made For Developers</h2>
+        <div class="intro">Welcome to my blog. Subscribe and get my latest blog post in your inbox.</div>
+        <form class="signup-form form-inline justify-content-center pt-3">
+            <div class="form-group">
+                <label class="sr-only" for="semail">Your email</label>
+                <input type="email" id="semail" name="semail1" class="form-control mr-md-1 semail" placeholder="Enter email">
+            </div>
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+    </div><!--//container-->
+</section>
+<section class="blog-list px-3 py-5 p-md-5">
     <div class="container">
-        <div class="row">
-            <div class=" col-md-8 col-md-10 mx-auto">
-                <div class="site-heading">
-                    <h3 class=" site-heading my-4 mt-3 text-white"> Welcome to my awesome Blog </h3>
-                    <p class="text-light">We Love Django As much as you do..! &nbsp
-                    </p>
-                </div>
-            </div>
-        </div>
+        <div class="item mb-5">
+            <div class="media">
+                {% for post in post_list %}
+
+
+                <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="/static/assets/images/blog/blog-post-thumb-1.jpg" alt="image">
+                <div class="media-body">
+                    <h3 class="title mb-1"><a href="{% url 'post_detail' post.slug  %}">{{ post.title }}</a></h3>
+                    <div class="meta mb-1"><span class="date">Published {{ post.created_on }}</span></div>
+                    <div class="intro">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies...</div>
+                    <a class="more-link" href="{% url 'post_detail' post.slug  %}">Read more &rarr;</a>
+                </div><!--//media-body-->
+
+                {% endfor %}
+
+            </div><!--//media-->
+        </div><!--//item-->
+
+        <nav class="blog-nav nav nav-justified my-5">
+          <a class="nav-link-prev nav-item nav-link d-none rounded-left" href="#">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+          <a class="nav-link-next nav-item nav-link rounded" href="index.html">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+        </nav>
+
     </div>
-</header>
-<div class="container">
-    <div class="row">
-        <!-- Blog Entries Column -->
-        <div class="col-md-8 mt-3 left">
-            {% for post in post_list %}
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h2 class="card-title">{{ post.title }}</h2>
-                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
-                    <p class="card-text">{{post.content|slice:":200" }}</p>
-                    <a href="{% url 'post_detail' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
-    </div>
-</div>
+</section>
+
 {%endblock%}
