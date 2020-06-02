@@ -29,7 +29,7 @@ DEBUG = int(os.environ.get("DEBUG", default=0))
 if os.environ.get("DJANGO_ALLOWED_HOSTS") is not None:
     ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 else:
-    ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", default=[])
+    ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", default=['*'])
 
 # Application definition
 INSTALLED_APPS = [
