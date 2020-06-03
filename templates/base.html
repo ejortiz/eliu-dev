@@ -15,6 +15,7 @@
 
     <!-- Theme CSS -->
     <link id="theme-style" rel="stylesheet" href="/static/assets/css/theme-2.css">
+    <link rel="stylesheet" href="/static/assets/css/site.css">
 
 </head>
 
@@ -24,9 +25,12 @@
 
     <div class="main-wrapper">
         <!--Content Block-->
-        {% block content %}
+        <div class="content">
+            {% block content %}
 
-        {% endblock content %}
+            {% endblock content %}
+        </div>
+
         <!--End Content Block-->
 	    <footer class="footer text-center py-2 theme-bg-dark">
            &copy; Eliud Ortiz, {% now "Y" %}
